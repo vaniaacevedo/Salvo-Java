@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -23,22 +24,22 @@ public class Game {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id; //long is used for numbers which can be very large
 
-    private long date;
+    private Date date;
 
 
     public Game () { } //constructor with no arguments
 
-    public Game (long date) { //constructor with arguments
+    public Game ( Date date) { //constructor with arguments
         this.date = date;
 
     }
 
-    public long getDate() { //methods of the class to access the properties assigned to the class
+    public Date getDate() { //methods of the class to access the properties assigned to the class
         return date;
     }
 
 
-    public void setDate( long date) { //void means that doesn't return anything
+    public void setDate( Date date) { //void means that doesn't return anything
         this.date = date;
     }
 

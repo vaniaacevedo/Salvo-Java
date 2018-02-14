@@ -8,11 +8,11 @@ $( document ).ready(function() {
         console.log(item.date);
 
         var date1 = new Date(item.date);// need to create a new Date to work with a real date
-//      since 
+//      since
         console.log(item.date);
 
-        var emails=item.gamePlayers.map(function(gameplayer){
-            return gameplayer.player.email;
+        var emails=item.gamePlayers.map(function(gamePlayer){
+            return gamePlayer.player.email;
         })
 
         console.log(item.gamePlayers)
@@ -23,7 +23,6 @@ $( document ).ready(function() {
          .append(" : ") //append will attach content
          .append(emails.join(", "))
          .appendTo(list);
-
 
         })
 

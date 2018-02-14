@@ -4,6 +4,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -45,27 +47,27 @@ public class SalvoApplication {
 
 
 			Game game1= new Game();
-			game1.setDate(date.getTime());
+			game1.setDate(Date.from(date.toInstant().minusSeconds(3600)));
 			gameRepository.save(game1);
 
 			Game game2= new Game();
-			game2.setDate(date.getTime());
+			game2.setDate(Date.from(date.toInstant().minusSeconds(2*3600)));
 			gameRepository.save(game2);
 
 			Game game3= new Game();
-			game3.setDate(date.getTime());
+			game3.setDate(Date.from(date.toInstant().minusSeconds(3*3600)));
 			gameRepository.save(game3);
 
 			Game game4= new Game();
-			game4.setDate(date.getTime());
+			game4.setDate(Date.from(date.toInstant().minusSeconds(4*3600)));
 			gameRepository.save(game4);
 
 			Game game5= new Game();
-			game5.setDate(date.getTime());
+			game5.setDate(Date.from(date.toInstant().minusSeconds(5*3600)));
 			gameRepository.save(game5);
 
 			Game game6= new Game();
-			game6.setDate(date.getTime());
+			game6.setDate(Date.from(date.toInstant().minusSeconds(6*3600)));
 			gameRepository.save(game6);
 
 

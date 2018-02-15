@@ -5,8 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.Calendar;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 
 @SpringBootApplication //annotation
@@ -20,7 +21,7 @@ public class SalvoApplication {
 
 	@Bean
 	//In Java, a bean is just a normal Java class, written to follow a few important rules.
-	public CommandLineRunner initData(PlayerRepository playerRepository, GameRepository gameRepository, GamePlayerRepository gamePlayerRepository) {
+	public CommandLineRunner initData(PlayerRepository playerRepository, GameRepository gameRepository, GamePlayerRepository gamePlayerRepository, ShipRepository shipRepository) {
 		return (args) -> {
 
 			Player tony= new Player(); //creates an instance of the class Player
@@ -72,12 +73,10 @@ public class SalvoApplication {
 
 
 //			gameRepository.save(new Game(date.toString()));
-//			gameRepository.save(new Game(date.toString()));
-//			gameRepository.save(new Game(date.toString()));
 
 
-			GamePlayer gamePlayer= new GamePlayer(jack,game1,date);
-			gamePlayerRepository.save(gamePlayer);
+			GamePlayer gamePlayer1= new GamePlayer(jack,game1,date);
+			gamePlayerRepository.save(gamePlayer1);
 
 			GamePlayer gamePlayer2= new GamePlayer(chloe,game1,date);
 			gamePlayerRepository.save(gamePlayer2);
@@ -110,9 +109,26 @@ public class SalvoApplication {
 			gamePlayerRepository.save(gamePlayer11);
 
 
+			//List<String> locations = Arrays.asList("H3", "H4", "H5");
+
+			Ship ship1= new Ship(gamePlayer1,"Cruiser",Arrays.asList("H3", "H4", "H5"));
+			shipRepository.save(ship1);
+
+			Ship ship2= new Ship(gamePlayer2,"Submarine",Arrays.asList("H3", "H4", "H5"));
+			shipRepository.save(ship2);
+
+			Ship ship3= new Ship(gamePlayer3,"Destroyer",Arrays.asList("H3", "H4", "H5"));
+			shipRepository.save(ship3);
+
+			Ship ship4= new Ship(gamePlayer4,"Patrol boat",Arrays.asList("H3", "H4", "H5"));
+			shipRepository.save(ship4);
 
 
 
+			gamePlayer1.addShip(ship1);
+			gamePlayer2.addShip(ship2);
+			gamePlayer3.addShip(ship3);
+			gamePlayer4.addShip(ship4);
 
 
 

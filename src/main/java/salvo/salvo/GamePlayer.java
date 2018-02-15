@@ -1,13 +1,9 @@
 package salvo.salvo;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class GamePlayer {
@@ -26,6 +22,10 @@ public class GamePlayer {
     @JoinColumn(name="game_id")
     private Game game;
 
+
+    @OneToMany(mappedBy="gamePlayer", fetch=FetchType.EAGER)
+    Set<Ship> ships= new HashSet<>();
+
     public GamePlayer() { }
 
     public GamePlayer( Player player, Game game, Date date) {
@@ -34,13 +34,6 @@ public class GamePlayer {
         this.date = date;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
     public Player getPlayer() {
         return player;
@@ -61,6 +54,22 @@ public class GamePlayer {
     public long getId() {
         return id;
     }
+
+    public Set<Ship> getShips() {
+        return ships;
+    }
+
+    public void setShips(Set<Ship> ships) {
+        this.ships = ships;
+    }
+
+    public void addShip( Ship ship) {
+        ship.setGamePlayer(this);
+        this.ships.add(ship); // why this?
+    }
+
+
+
 }
 
 
